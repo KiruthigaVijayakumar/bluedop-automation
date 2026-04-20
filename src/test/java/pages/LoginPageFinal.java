@@ -16,7 +16,7 @@ public class LoginPageFinal {
     }
 
     public void openURL() {
-        page.navigate("https://app-dev.bluedop.com/");
+    	page.navigate("https://opensource-demo.orangehrmlive.com/");
     }
 
     public void login(String user, String pass) {
