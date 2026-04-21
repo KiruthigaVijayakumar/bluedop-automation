@@ -5,14 +5,12 @@ import pages.LoginPageFinal;
 import com.aventstack.extentreports.*;
 import utils.ExtentManagerFinal;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
+public class LoginTestFinal extends BaseTestFinal {
 
-public class LoginTestFinal extends BaseTestFinal{
-	
-	ExtentReports extent;
+    ExtentReports extent;
     ExtentTest test;
 
     @BeforeMethod
@@ -23,26 +21,31 @@ public class LoginTestFinal extends BaseTestFinal{
     @Test
     public void validLoginTest() {
 
-        test = extent.createTest("Bluedop Login Test");
+        test = extent.createTest("OrangeHRM Login Test");
 
         try {
             LoginPageFinal login = new LoginPageFinal(page);
 
             login.openURL();
-            test.info("Opened Bluedop login page");
+            test.info("Opened OrangeHRM login page");
 
-            login.login("BlueDopAdmin", "BDAdmin@4321");
-            test.info("Entered username and password");
+            login.login("Admin", "admin123");
+            test.info("Entered credentials");
 
-            test.pass("Login test executed");
+            // 🔥 Assertion (VERY IMPORTANT)
+            String currentUrl = page.url();
+            Assert.assertTrue(currentUrl.contains("dashboard"));
+
+            test.pass("Login successful");
 
         } catch (Exception e) {
             test.fail("Test Failed: " + e.getMessage());
+            throw e;
         }
     }
 
     @AfterMethod
     public void tearDownReport() {
-        extent.flush();   // 🔥 THIS CREATES HTML FILE
+        extent.flush();
     }
 }
