@@ -8,7 +8,7 @@ import utils.ExtentManagerFinal;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class LoginTestFinal extends BaseTestFinal {
+public class LoginTest extends BaseTestFinal {
 
     ExtentReports extent;
     ExtentTest test;
