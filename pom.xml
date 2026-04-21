@@ -40,6 +40,8 @@
 
 <build>
   <plugins>
+
+    <!-- 🔥 Force disable ALL annotation processors (including Lombok) -->
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-compiler-plugin</artifactId>
@@ -47,11 +49,14 @@
       <configuration>
         <release>17</release>
 
-        <!-- 🔥 THIS LINE DISABLES LOMBOK PROCESSING -->
-        <annotationProcessorPaths></annotationProcessorPaths>
+        <!-- 🔥 THIS LINE IS THE REAL FIX -->
+        <compilerArgs>
+          <arg>-proc:none</arg>
+        </compilerArgs>
 
       </configuration>
     </plugin>
+
   </plugins>
 </build>
 
