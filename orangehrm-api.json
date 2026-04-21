@@ -1,0 +1,105 @@
+{
+  "info": {
+    "_postman_id": "cc374822-04e3-42db-8557-5d61ae1600c5",
+    "name": "OrangeHRM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53780379",
+    "_collection_link": "https://go.postman.co/collection/53780379-cc374822-04e3-42db-8557-5d61ae1600c5?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/action-summary",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Data is present\", function () {\r",
+              "    let json = pm.response.json();\r",
+              "    pm.expect(json.data.length).to.be.above(0);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Correct group name\", function () {\r",
+              "    let json = pm.response.json();\r",
+              "    pm.expect(json.data[0].group).to.eql(\"Pending Self Reviews\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "orangehrm=5cdujn62g0r2qpf5v76qafpduh",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text",
+              "uuid": "170c9bff-c38c-49ca-8ade-a47bcc468dfd"
+            },
+            {
+              "key": "username",
+              "value": "BlueDopAdmin",
+              "type": "text",
+              "uuid": "219d717b-f15b-4939-99e1-3786968ae5e0"
+            },
+            {
+              "key": "password",
+              "value": "BDAdmin@4321",
+              "type": "text",
+              "uuid": "ca7ad33d-45b3-46fc-a5cd-2cbebca2fb05"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/action-summary",
+          "protocol": "https",
+          "host": [
+            "opensource-demo",
+            "orangehrmlive",
+            "com"
+          ],
+          "path": [
+            "web",
+            "index.php",
+            "api",
+            "v2",
+            "dashboard",
+            "employees",
+            "action-summary"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
